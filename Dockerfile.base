@@ -1,26 +1,23 @@
 #!/usr/bin/env python
 
 # setting list in 'Dockerfile.base'
-#   -python(docker hub의 python slim)
-#   -ubuntu 기본 패키지 update, upgrade
-#   -build-essential(uwsgi 및 nginx 연결을 위해 필요한 패키지)
-#   -nginx
-#   -supervisor
+#   -python             docker hub의 python slim
+#   -apt                ubuntu 기본 패키지 update, upgrade
+#   -build-essential    uwsgi 및 nginx 연결을 위해 필요한 패키지
+#                       build-essential 에는 uwsgi 를 포함하는 여러 패키지가 들어있다
+#                       gcc/g++ compilers(C언어 등 컴파일러)또한 포함
+#   -nginx              서버 구동
+#   -supervisor         nginx, uwsgi 실행 유지
+#   -requirements.txt   장고 패키지 설치
 
-# 1. install python
-FROM                python:3.5.4-slim
+FROM                python:3.6.5-slim
 MAINTAINER          dosio0102@gmail.com
 
-# 2. 기본적인 도커운영체제의 패키지들을 업데이트, 업그레이드 하는 것
 RUN                 apt -y update
 RUN                 apt -y dist-upgrade
 
-# 3. build-essential 에는 uwsgi 를 포함하는 여러 패키지가 들어있다
-#    gcc/g++ compilers(C언어 등 컴파일러)또한 포함
 RUN                 apt -y install build-essential
-# install nginx, supervisor
 RUN                 apt -y install nginx supervisor
 
 COPY                ./requirements.txt /srv/
 RUN                 pip install -r /srv/requirements.txt
-# 4. requirements.txt 파일로 현재 프로젝트의 package를 install해준다
