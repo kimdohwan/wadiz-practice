@@ -12,6 +12,9 @@ selenium = "*"
 
 [dev-packages]
 awsebcli = "*"
+django-extensions = "*"
+ipython = "*"
+notebook = "*"
 
 [requires]
 python_version = "3.6"

@@ -8,6 +8,14 @@
 /.static
 /.media
 
+# crawling folder(no use)
+/crawling
+
+# Jupyter file
+*.ipynb
+
+# ------------------------------------
+
 ### Django ###
 *.log
 *.pot

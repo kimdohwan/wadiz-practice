@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import json
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 SECRET_DIR = os.path.join(ROOT_DIR, '.secrets')
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -26,6 +26,10 @@ secrets = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
 # Application definition
 
 INSTALLED_APPS = [
+    'rewards',
+
+    'django_extensions',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
